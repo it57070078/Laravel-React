@@ -23,7 +23,5 @@
         @yield('content')
         @yield('edit')
 
-        {{-- <script src="js/index.js"></script> --}}
-
     </body>
 </html>
