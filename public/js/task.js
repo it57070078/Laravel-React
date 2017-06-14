@@ -9931,7 +9931,7 @@ var EditTask = function (_React$Component) {
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", onChange: this.handleUpdate, value: this.props.taskData[getIndex(this.props.editID, this.props.taskData)].task, className: "form-control" }),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     "button",
-                                    { type: "remove", className: "btn btn-success active" },
+                                    { type: "submit", className: "btn btn-success active" },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "glyphicon glyphicon-ok", "aria-hidden": "true" }),
                                     "Save"
                                 )

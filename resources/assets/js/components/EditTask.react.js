@@ -19,7 +19,7 @@ class EditTask extends React.Component{
                                 <form className = "form-horizontal" onSubmit={this.handleSubmit}>
                                     <div className ="col-xs-9">
                                         <input type="text" onChange={this.handleUpdate} value={this.props.taskData[getIndex(this.props.editID, this.props.taskData)].task} className = "form-control"/>
-                                        <button type="remove" className="btn btn-success active">
+                                        <button type="submit" className="btn btn-success active" >
                                         <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>Save
                                         </button>
                                     </div>
