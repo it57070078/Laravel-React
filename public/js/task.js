@@ -9513,59 +9513,139 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 
-// class Total extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {value: ''};
 
-//         this.handleInput = this.handleInput.bind(this);
-//         this.handleSubmit = this.handleSubmit.bind(this);
-//         // this.handleDelete = this.handleDelete.bind(this);
-//     }
+var Total = function (_React$Component) {
+    _inherits(Total, _React$Component);
 
-//     handleInput(e){
-//         this.setState({value: e.target.value});
-//     }
-//     handleSubmit(e){
-//         alear('Add Complete ' + this.state.value);
-//         e.preventDefault();
-//     }
-//     // handleDelete(e){
+    function Total(props) {
+        _classCallCheck(this, Total);
 
+        var _this = _possibleConstructorReturn(this, (Total.__proto__ || Object.getPrototypeOf(Total)).call(this, props));
 
-//     // }
+        _this.state = {
+            taskData: _this.props.taskData,
+            taskInput: '',
+            editID: -1
+        };
+        _this.handleInput = _this.handleInput.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.handleDelete = _this.handleDelete.bind(_this);
+        _this.handleEdit = _this.handleEdit.bind(_this);
+        _this.handleUpdate = _this.handleUpdate.bind(_this);
+        return _this;
+    }
 
-//         render(){
-//             return(
-//                 <div>
-//                     <Header />
-//                 </div>
+    _createClass(Total, [{
+        key: 'handleInput',
+        value: function handleInput(e) {
+            this.setState({
+                taskInput: e
+            });
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            var data = this.state.taskData;
+            data.push({ id: nextid, task: this.state.taskInput });
+            this.setState({
+                taskData: data
+            });
+            nextid = nextid + 1;
+        }
+    }, {
+        key: 'handleEdit',
+        value: function handleEdit(e) {
+            this.setState({
+                editID: e
+            });
+        }
+    }, {
+        key: 'handleUpdate',
+        value: function handleUpdate(e) {
+            var data = taskData;
+            data[getIndex(this.state.editID, data)] = { id: this.state.editID, task: e };
+            this.setState({
+                taskData: data
+            });
+        }
+    }, {
+        key: 'handleDelete',
+        value: function handleDelete(e) {
+            var data = this.state.taskData;
+            var index = data.findIndex(function (arr) {
+                return arr.id == e;
+            });
+            data.splice(index, 1);
+            this.setState({
+                taskData: data
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Header, null),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(AddForm, {
+                    taskInput: this.state.taskInput,
+                    onChangetaskInput: this.handleInput,
+                    onSubmitTask: this.handleSubmit
+                }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ShowTask, {
+                    taskData: this.state.taskData,
+                    onDelete: this.handleDelete,
+                    onEdit: this.handleEdit
+                }),
+                this.state.editID !== -1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(EditTask, { editID: this.state.editID, taskData: this.state.taskData, handleUpdate: this.handleUpdate })
+            );
+        }
+    }]);
 
-//             )
+    return Total;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
-//         }
-//     }
+function getIndex(value, arr) {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].id === value) {
+            return i;
+        }
+    }
+    return -1; //to handle the case where the value doesn't exist
+}
 
 function Header() {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'container' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            { className: 'text-center' },
+            'nav',
+            { className: 'navbar navbar-default' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'p',
-                { align: 'left' },
+                'a',
+                { className: 'navbar-brand' },
+                'Task List'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'col-md-4' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'nav',
-                    { className: 'navbar navbar-default' },
+                    'div',
+                    { className: 'text-right' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'a',
-                        { className: 'navbar-brand' },
-                        'Task List'
+                        'button',
+                        { type: 'button', className: 'btn btn-default btn-md' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'glyphicon glyphicon-menu-hamburger', 'aria-hidden': 'true' })
                     )
                 )
             )
@@ -9573,53 +9653,324 @@ function Header() {
     );
 }
 
-// class AddForm extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {value: ''};
+var AddForm = function (_React$Component2) {
+    _inherits(AddForm, _React$Component2);
 
-//         this.handleInput = this.handleInput.bind(this);
-//         this.handleSubmit = this.handleSubmit.bind(this);
-//     }
+    function AddForm(props) {
+        _classCallCheck(this, AddForm);
 
-//     handleInput(e){
-//         this.setState({value: e.target.value});
-//     }
-//     handleSubmit(e){
-//         alear('Add Complete ' + this.state.value);
-//         e.preventDefault();
-//     }
+        var _this2 = _possibleConstructorReturn(this, (AddForm.__proto__ || Object.getPrototypeOf(AddForm)).call(this, props));
 
-//     render() {
-//         return (
-//             <div className="panel panel-info">
-//                 <div className="panel-body">
-//                     @include('commons.errors')
-//                     <form onSubmit={this.handleSubmit}>
-//                         <div className="form-group">
-//                             <label>Task</label>
-//                                 <input type="text" name="name" placeholder="Input Text" value={this.state.value} onInput={this.handleInput} />
-//                         </div>
-//                         <div className="form-group">
-//                             <div className="col-sm-offset-3 col-sm-6">
-//                                 <p align="right">
-//                                     <button onClick={this.handleSubmit.bind(this)} className="btn btn-success active">
-//                                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-//                                         Add Task
-//                                     </button>
-//                                 </p>
-//                             </div>    
-//                         </div>
-//                     </form>
-//                 </div>
-//             </div>
+        _this2.handleInput = _this2.handleInput.bind(_this2);
+        _this2.handleSubmit = _this2.handleSubmit.bind(_this2);
+        return _this2;
+    }
 
-//         );
-//     }
-// }
+    _createClass(AddForm, [{
+        key: 'handleInput',
+        value: function handleInput(e) {
+            this.props.onChangetaskInput(e.target.value);
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            e.preventDefault();
+            this.props.onSubmitTask();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'container' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'panel panel-default' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'panel-heading' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'h4',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                null,
+                                ' New Task '
+                            )
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'panel-body' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'label',
+                            null,
+                            'Task'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'form',
+                            { className: 'form-horizontal', onSubmit: this.handleSubmit },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'col-sm-12 form-group' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', placeholder: 'Input Text', value: this.props.taskInput, onInput: this.handleInput, className: 'form-control' })
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'button',
+                                { type: 'submit', className: 'btn btn-success btn-md active' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'glyphicon glyphicon-plus', 'aria-hidden': 'true' }),
+                                'Add Task'
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
 
+    return AddForm;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
-__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Header, null), document.getElementById('task'));
+var ShowTask = function (_React$Component3) {
+    _inherits(ShowTask, _React$Component3);
+
+    function ShowTask() {
+        _classCallCheck(this, ShowTask);
+
+        return _possibleConstructorReturn(this, (ShowTask.__proto__ || Object.getPrototypeOf(ShowTask)).apply(this, arguments));
+    }
+
+    _createClass(ShowTask, [{
+        key: 'render',
+        value: function render() {
+            var _this4 = this;
+
+            var currentTask = [];
+            if (this.props.taskData.length === 0) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null);
+            }
+            this.props.taskData.map(function (sometask) {
+                return currentTask.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'tr',
+                    { key: sometask.id },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        { className: 'table-text' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            null,
+                            sometask.task
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(EditButton, { onEdit: _this4.props.onEdit, id: sometask.id })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(DeleteTask, { onDelete: _this4.props.onDelete, id: sometask.id })
+                        )
+                    )
+                ));
+            });
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'container' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'panel panel-default' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'panel-heading' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'h3',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                null,
+                                'Current Tasks'
+                            )
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'panel-body' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'table',
+                            { className: 'table table-striped' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'thead',
+                                null,
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'th',
+                                    null,
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'h4',
+                                        null,
+                                        'Task'
+                                    )
+                                ),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'th',
+                                    null,
+                                    '\xA0'
+                                )
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'tbody',
+                                null,
+                                currentTask
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return ShowTask;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+var DeleteTask = function (_React$Component4) {
+    _inherits(DeleteTask, _React$Component4);
+
+    function DeleteTask(props) {
+        _classCallCheck(this, DeleteTask);
+
+        var _this5 = _possibleConstructorReturn(this, (DeleteTask.__proto__ || Object.getPrototypeOf(DeleteTask)).call(this, props));
+
+        _this5.handleDelete = _this5.handleDelete.bind(_this5);
+        return _this5;
+    }
+
+    _createClass(DeleteTask, [{
+        key: 'handleDelete',
+        value: function handleDelete(e) {
+            e.preventDefault();
+            this.props.onDelete(this.props.id);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'form',
+                { onSubmit: this.handleDelete },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'button',
+                    { type: 'submit', className: 'btn btn-danger btn-sm col-xs-2 active' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'glyphicon glyphicon-trash', 'aria-hidden': 'true' }),
+                    'Delete'
+                )
+            );
+        }
+    }]);
+
+    return DeleteTask;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+var EditButton = function (_React$Component5) {
+    _inherits(EditButton, _React$Component5);
+
+    function EditButton(props) {
+        _classCallCheck(this, EditButton);
+
+        var _this6 = _possibleConstructorReturn(this, (EditButton.__proto__ || Object.getPrototypeOf(EditButton)).call(this, props));
+
+        _this6.handleEdit = _this6.handleEdit.bind(_this6);
+        return _this6;
+    }
+
+    _createClass(EditButton, [{
+        key: 'handleEdit',
+        value: function handleEdit(e) {
+            e.preventDefault();
+            this.props.onEdit(this.props.id);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'form',
+                { onSubmit: this.handleEdit },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'button',
+                    { type: 'submit', className: 'btn btn-warning col-xs-2 btn-sm active' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'glyphicon glyphicon-edit', 'aria-hidden': 'true' }),
+                    'Edit'
+                )
+            );
+        }
+    }]);
+
+    return EditButton;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+var EditTask = function (_React$Component6) {
+    _inherits(EditTask, _React$Component6);
+
+    function EditTask(props) {
+        _classCallCheck(this, EditTask);
+
+        var _this7 = _possibleConstructorReturn(this, (EditTask.__proto__ || Object.getPrototypeOf(EditTask)).call(this, props));
+
+        _this7.handleUpdate = _this7.handleUpdate.bind(_this7);
+        return _this7;
+    }
+
+    _createClass(EditTask, [{
+        key: 'handleUpdate',
+        value: function handleUpdate(e) {
+            this.props.handleUpdate(e.target.value);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'container' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'panel panel-default' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'panel-heading' },
+                        'Edit Task'
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'panel-body' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'label',
+                            null,
+                            ' Task : '
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'form',
+                            { className: 'form-horizontal', onSubmit: this.handleSubmit },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'col-xs-9' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', onChange: this.handleUpdate, value: this.props.taskData[getIndex(this.props.editID, this.props.taskData)].task, className: 'form-control' })
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return EditTask;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+var taskData = [];
+var nextid = 1;
+
+__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Total, { taskData: taskData }), document.getElementById('task'));
 
 /***/ }),
 /* 81 */
