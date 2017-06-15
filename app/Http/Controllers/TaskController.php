@@ -40,9 +40,9 @@ class TaskController extends Controller {
          $tasks = Task::orderBy('created_at', 'asc')->get();
          return view('edits.edit' ,compact('etask','tasks'));
 
-     }
+    }
 
-     public function update(Request $request,Task $task) {
+    public function update(Request $request,Task $task) {
 
          $validator = Validator::make($request->all(), [
             'editname' => 'required|max:255',
@@ -58,10 +58,8 @@ class TaskController extends Controller {
          $task->name = $request->editname;
          $task->save();
          return redirect('/'); 
-     }
+    }
 
-
-    //  }
     public function delete(Task $task) {
         $task->delete();
         return redirect('/');
