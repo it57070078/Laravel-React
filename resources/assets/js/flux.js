@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as TaskAction from '.actions/TaskAction.js'
+import TaskStore from './stores/TaskStores.js'
 import Header from './components/Header.react';
 import AddTask from './components/AddTask.react';
 import ShowTask from './components/ShowTask.react';
@@ -11,6 +13,7 @@ import EditTask from './components/EditTask.react';
 class Total extends React.Component {
     constructor(props) {
         super(props);
+        this.getTasks = this.getTasks.bind.apply(this);
         this.state = {
             taskData: this.props.taskData,
             taskInput: '',
@@ -21,6 +24,19 @@ class Total extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
+    }
+
+    componentWillMount(){
+        TaskStore.on("change")
+    }
+    componentWillUnmount(){
+        TaskStore.removeListener("change")
+    }
+
+    getTasks(){
+        this.setState({
+            
+        })
     }
 
     handleInput(e){
