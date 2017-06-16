@@ -1,50 +1,108 @@
+import { EventEmitter } from 'events';
+
 import TaskDispatcher from './dispatcher/TaskDispatcher.js';
-import TaskConstants from './constants/TaskConstants.js';
-
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
-var CHANGE_EVENT = 'change';
-
-var _task = {};
-var _taskData = [];
-
+// import CHANGE_EVENT from 'change';
 
 class TaskStore extends EventEmitter{
-    addTask(task){
+    constructor(){
+        super()
+        this.tasks = [
+            {
+                id: +'',task:''
+            }
+        ]
+    }
+    createTask(task) {
+        this.tasks.push({
+            id,
+            task
+        });
+
+        this.emit("change");
+    }
+
+    getIndex(){
+        
+    }
+    deleteTask(){
 
     }
-    editTask(task){
+    editTask(){
 
     }
-    deleteTask(id){
+    updateTask(){
 
     }
 
+    handleActions(action) {
+        switch(action.type){
+            case "ADD_TASK": {
+                this.createTask(action.task);
+                this.emit("change");
+                break;
+            }
+            case "INDEX_TASK": {
 
-handleAcion(action) {
-    switch(action.type) {
-        case "ADD_TASK": {
-            this.addTask(action.task);
-            break;
+            }
+            case "DELETE_TASK": {
+
+            }
+            case "EDIT_TASK": {
+
+            }
+            case "UPDATE_TASK": {
+
+            }
         }
-        case "EDIT_TASK": {
-            this.editTask(action.task);
-            break;
-        }
-        case "DELETE_TASK": {
-            this.deleteTask(action.id);
-            break;
-        }
     }
-
 }
 
-}
+const taskStore = new TaskStore;
+TaskDispatcher.register(taskStore.handleActions.bind(taskStore));
+
+export default taskStore;
 
 
+// var EventEmitter = require('events').EventEmitter;
+// var assign = require('object-assign');
+var CHANGE_EVENT = 'change';
+
+// var _store = {
+//     _taskData: [],
+// };
 
 
+// class TaskStore extends EventEmitter{
+//     addTask(task){
 
+//     }
+//     editTask(task){
+
+//     }
+//     deleteTask(id){
+
+//     }
+
+
+// handleAcion(action) {
+//     switch(action.type) {
+//         case "ADD_TASK": {
+//             this.addTask(action.task);
+//             break;
+//         }
+//         case "EDIT_TASK": {
+//             this.editTask(action.task);
+//             break;
+//         }
+//         case "DELETE_TASK": {
+//             this.deleteTask(action.id);
+//             break;
+//         }
+//     }
+
+// }
+
+// }
 
 
 // var TaskStore = assign({}, EventEmitter.prototype, {
@@ -67,10 +125,10 @@ handleAcion(action) {
 // });
 
 
-TaskDispatcher.register(function(action){
-    switch (action.actionType){
-        case TaskConstants.Task_ADD:
-        addDAta(action.e)
-    }
+// TaskDispatcher.register(function(action){
+//     switch (action.actionType){
+//         case TaskConstants.Task_ADD:
+//         addDAta(action.e)
+//     }
 
-});
+// });

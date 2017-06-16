@@ -4,8 +4,12 @@ use App\Task;
 use Illuminate\Http\Request;
 
 Route::get('/',function(){
-	return view('firstreact');
+    return view('reactflux');
 });
+
+// Route::get('/',function(){
+// 	return view('firstreact');
+// });
 
 // Route::get('/', 'TaskController@index');
 
