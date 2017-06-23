@@ -23,7 +23,7 @@ export default class EditTask extends React.Component{
                 <div className="panel panel-default">
                     <div className="panel-heading">Edit Task</div>
                         <div className = "panel-body">
-                            <label> Task : {this.props.taskData[getIndex(this.props.editID, this.props.taskData)].name}</label>
+                            <label> Task : </label>
                                 <form className = "form-horizontal" onChange = {this.updateTask}>
                                     <div className ="col-xs-9">
                                         <input type="text" value={this.props.taskData[getIndex(this.props.editID, this.props.taskData)].name}  className = "form-control"/>

@@ -11828,8 +11828,7 @@ var EditTask = function (_React$Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'label',
                             null,
-                            ' Task : ',
-                            this.props.taskData[getIndex(this.props.editID, this.props.taskData)].name
+                            ' Task : '
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'form',
@@ -11972,26 +11971,26 @@ var Layout = function (_React$Component) {
         key: 'addNewTask',
         value: function addNewTask(e) {
             __WEBPACK_IMPORTED_MODULE_1__actions_TaskAction_js__["b" /* _AddTask */](e);
-            console.log(this.props.startID);
+            // console.log(this.props.startID)
         }
     }, {
         key: 'delTask',
         value: function delTask(id) {
-            __WEBPACK_IMPORTED_MODULE_1__actions_TaskAction_js__["c" /* _DeleteTask */](id);
-            console.log('del' + id);
+            __WEBPACK_IMPORTED_MODULE_1__actions_TaskAction_js__["c" /* _DeleteTask */](id
+            // console.log('del'+id)
+            );
         }
     }, {
         key: 'edtask',
         value: function edtask(id) {
             __WEBPACK_IMPORTED_MODULE_1__actions_TaskAction_js__["d" /* _EditTask */](id);
-            console.log('edit' + id);
-            console.log('editID ' + this.props.editID);
+            // console.log('edit'+id)
+            // console.log('editID '+ this.props.editID)
         }
     }, {
         key: 'updateTask',
         value: function updateTask(e) {
             __WEBPACK_IMPORTED_MODULE_1__actions_TaskAction_js__["e" /* _UpdateTask */](e, this.props.editID);
-            console.log(e);
         }
     }, {
         key: 'render',
