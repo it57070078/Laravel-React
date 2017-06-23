@@ -32,16 +32,16 @@ export default class Layout extends React.Component{
 
     addNewTask(e){
         TaskAction._AddTask(e);
-        console.log(this.props.startID)
+        // console.log(this.props.startID)
     }
     delTask(id){
         TaskAction._DeleteTask(id)
-        console.log('del'+id)
+        // console.log('del'+id)
     }
     edtask(id){
         TaskAction._EditTask(id);
-        console.log('edit'+id)
-        console.log('editID '+ this.props.editID)
+        // console.log('edit'+id)
+        // console.log('editID '+ this.props.editID)
     }
     updateTask(e){
         TaskAction._UpdateTask(e,this.props.editID)

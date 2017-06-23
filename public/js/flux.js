@@ -11991,6 +11991,7 @@ var Layout = function (_React$Component) {
         key: 'updateTask',
         value: function updateTask(e) {
             __WEBPACK_IMPORTED_MODULE_1__actions_TaskAction_js__["e" /* _UpdateTask */](e, this.props.editID);
+            console.log(e);
         }
     }, {
         key: 'render',
