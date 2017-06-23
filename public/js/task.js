@@ -9794,21 +9794,15 @@ var AddTask = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (AddTask.__proto__ || Object.getPrototypeOf(AddTask)).call(this, props));
 
-        _this.handleInput = _this.handleInput.bind(_this);
-        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.handleAddTaskSubmit = _this.handleAddTaskSubmit.bind(_this);
         return _this;
     }
 
     _createClass(AddTask, [{
-        key: "handleInput",
-        value: function handleInput(e) {
-            this.props.onChangetaskInput(e.target.value);
-        }
-    }, {
-        key: "handleSubmit",
-        value: function handleSubmit(e) {
+        key: "handleAddTaskSubmit",
+        value: function handleAddTaskSubmit(e) {
             e.preventDefault();
-            this.props.onSubmitTask();
+            this.props.onSubmitNewTask(e);
         }
     }, {
         key: "render",
@@ -9846,7 +9840,7 @@ var AddTask = function (_React$Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 "div",
                                 { className: "col-sm-12 form-group" },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", placeholder: "Input Text", value: this.props.taskInput, onInput: this.handleInput, className: "form-control" })
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", placeholder: "Input Text", onInput: this.onSubmitNewTask, className: "form-control" })
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 "button",
@@ -9857,7 +9851,9 @@ var AddTask = function (_React$Component) {
                         )
                     )
                 )
-            );
+            )
+            // value={this.props.taskInput}
+            ;
         }
     }]);
 
@@ -9891,14 +9887,14 @@ var EditTask = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (EditTask.__proto__ || Object.getPrototypeOf(EditTask)).call(this, props));
 
-        _this.handleUpdate = _this.handleUpdate.bind(_this);
+        _this.UpdateTask = _this.UpdateTask.bind(_this);
         return _this;
     }
 
     _createClass(EditTask, [{
-        key: "handleUpdate",
-        value: function handleUpdate(e) {
-            this.props.handleUpdate(e.target.value);
+        key: "UpdateTask",
+        value: function UpdateTask(e) {
+            this.props.UpdateTask(e);
         }
     }, {
         key: "render",
@@ -9928,7 +9924,7 @@ var EditTask = function (_React$Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 "div",
                                 { className: "col-xs-9" },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", onChange: this.handleUpdate, value: this.props.taskData[getIndex(this.props.editID, this.props.taskData)].task, className: "form-control" }),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", onChange: this.UpdateTask, value: this.props.taskData[getIndex(this.props.editID, this.props.taskData)].task, className: "form-control" }),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     "button",
                                     { type: "submit", className: "btn btn-success active" },
@@ -9946,6 +9942,9 @@ var EditTask = function (_React$Component) {
     return EditTask;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
+/* harmony default export */ __webpack_exports__["a"] = (EditTask);
+
+
 function getIndex(value, arr) {
     for (var i = 0; i < arr.length; i++) {
         if (arr[i].id === value) {
@@ -9954,8 +9953,6 @@ function getIndex(value, arr) {
     }
     return -1; //to handle the case where the value doesn't exist
 }
-
-/* harmony default export */ __webpack_exports__["a"] = (EditTask);
 
 /***/ }),
 /* 87 */

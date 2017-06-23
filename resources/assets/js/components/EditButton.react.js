@@ -1,6 +1,6 @@
 import React from 'react';
 
-class EditButton extends React.Component{
+export default class EditButton extends React.Component{
     constructor(props){
         super(props);
         this.handleEdit = this.handleEdit.bind(this);
@@ -20,5 +20,3 @@ class EditButton extends React.Component{
         );
     };
 }
-
-export default EditButton

@@ -1,22 +1,28 @@
 import React from 'react';
-
-
-class AddTask extends React.Component {
+export default class AddTask extends React.Component {
     constructor(props) {
         super(props);
-
-        this.handleInput = this.handleInput.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+            text: ''
+        }
+        this.submitNewTask = this.submitNewTask.bind(this);
+        this.onChangeText = this.onChangeText.bind(this);
      }
 
-     handleInput(e){
-         this.props.onChangetaskInput(e.target.value);
+     submitNewTask(e){
+         e.preventDefault()
+         this.props.addNewTask(this.state.text)
+         this.setState({
+            text: ''
+        })
      }
-     handleSubmit(e){
-         e.preventDefault();
-         this.props.onSubmitTask();
+     onChangeText(e){
+        this.setState({
+            text: e.target.value
+        })
+
      }
-    
+
     render() {
         return (
             <div className = "container">
@@ -24,9 +30,9 @@ class AddTask extends React.Component {
                     <div className="panel-heading"><h4><label> New Task </label></h4></div>
                             <div className="panel-body">
                                 <label>Task</label>
-                                    <form className="form-horizontal" onSubmit = {this.handleSubmit} >
+                                    <form className="form-horizontal" onSubmit = {this.submitNewTask} >
                                         <div className="col-sm-12 form-group">                             
-                                            <input type="text" placeholder="Input Text" value={this.props.taskInput} onInput={this.handleInput} className="form-control"/>
+                                            <input type="text" placeholder="Input Text" value={this.state.text} onChange={this.onChangeText} className="form-control"/>
                                         </div>
                                             <button type="submit" className="btn btn-success btn-md active"><span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                             Add Task
@@ -39,4 +45,3 @@ class AddTask extends React.Component {
     }
 }
 
-export default AddTask

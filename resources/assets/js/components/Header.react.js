@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-function Header () {
+export default function Header () {
     return (
         <div className="container">
                 <nav className="navbar navbar-default">
@@ -19,6 +18,3 @@ function Header () {
         </div>
     );
 }
-
-
-export default Header

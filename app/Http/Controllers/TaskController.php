@@ -15,6 +15,13 @@ class TaskController extends Controller {
         return view('tasks.index', ['tasks' => $tasks,]);
     }
 
+    public function getAllTask(){
+        $tasks = Task::orderBy('created_at', 'asc')->get();
+        return response()->json([
+            'tasks' => $tasks
+        ]);
+    }
+
     public function create(Request $request) {
 
         $validator = Validator::make($request->all(), [
@@ -30,8 +37,7 @@ class TaskController extends Controller {
         $task = new Task;
         $task->name = $request->name;
         $task->save();
-
-         return redirect('/');
+        return redirect('/'); 
     }
 
      public function edit(Task $task) {
@@ -48,20 +54,17 @@ class TaskController extends Controller {
         ]);
 
         if ($validator->fails()){
-            return redirect('/task/{task}/edit')
+            return redirect('/')
                 ->withInput()
                 ->withErrors($validator);
         }
 
-
          $task->name = $request->editname;
          $task->save();
-         return redirect('/'); 
     }
 
     public function delete(Task $task) {
         $task->delete();
-        return redirect('/');
 
     }
 

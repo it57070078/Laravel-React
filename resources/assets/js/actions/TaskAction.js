@@ -1,42 +1,29 @@
-import TaskDispatcher from './dispatcher/TaskDispatcher.js';
+import dispatcher from '../dispatcher.js';
 import axios from 'axios';
 
-export function addTask(task){
-    axios.post('/task',{task: task}).then(()=> {
-        TaskDispatcher.dispatch({
-            type: "ADD_TASK",
-            payload: task,
-        });
-    })
-}
-export function indexTask(){
-    axios.get('/').then((response)=> {
-        TaskDispatcher.dispatch({
-            type: "INDEX_TASK",
-            payload: response.data
-        });
-    })
-}
-export function deleteTask(id){
-    axios.delete('/task/{task}',{id: id}).then(()=>{
-        TaskDispatcher.dispatch({
-            type: "DELETE_TASK",
-            payload: id,
-        });
-    })
-}
-export function editTask(id){
-        TaskDispatcher.dispatch({
-            type: "EDIT_TASK",
-            payload: id,
-        });
+
+export function _AddTask(name){
+    return axios.post('/task',{name: name}).then(() => {
+            dispatcher.dispatch({type: "ADD_TASK",payload: name});
+        })
     }
 
-export function updateTask(editedTask,editID){
-    axios.post('/task/{task}/edited',{editedTask: editedTask}).then(()=>{
-        TaskDispatcher.dispatch({
-            type: "UPDATE_TASK",
-           payload: editedTask,
-        });
-    })
+export function _IndexTask(){
+    return axios.get('/getAllTask').then((response)=> {
+            dispatcher.dispatch({type: "INDEX_TASK",payload: response.data});
+        })
+    } 
+export function _DeleteTask(id){
+    return axios.delete('/task/'+id).then(()=>{
+            dispatcher.dispatch({type: "DELETE_TASK",payload: id});
+        })
+    }
+export function _EditTask(id){
+    return dispatcher.dispatch({type: "EDIT_TASK",payload: id});
 }
+
+export function _UpdateTask(editname,editID){
+    return axios.post('/task/'+editID+'/edited',{editname: editname}).then(()=>{
+            dispatcher.dispatch({type: "UPDATE_TASK",payload: editname});
+        })
+    }

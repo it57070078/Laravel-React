@@ -1,24 +1,32 @@
 import React from 'react';
 
-class EditTask extends React.Component{
+export default class EditTask extends React.Component{
     constructor(props){
         super(props);
-        this.handleUpdate = this.handleUpdate.bind(this);
+        this.state ={
+            text: ''
+        }
+        this.updateTask = this.updateTask.bind(this);
+
+    }
+    updateTask(e){
+        this.props.updateTask(e.target.value);
+        this.setState({
+            text:''
+        })
+
     }
 
-    handleUpdate(e){
-        this.props.handleUpdate(e.target.value);
-    }
     render(){
         return (
             <div className ="container">
                 <div className="panel panel-default">
                     <div className="panel-heading">Edit Task</div>
                         <div className = "panel-body">
-                            <label> Task : </label>
-                                <form className = "form-horizontal" onSubmit={this.handleSubmit}>
+                            <label> Task : {this.props.taskData[getIndex(this.props.editID, this.props.taskData)].name}</label>
+                                <form className = "form-horizontal" onChange = {this.updateTask}>
                                     <div className ="col-xs-9">
-                                        <input type="text" onChange={this.handleUpdate} value={this.props.taskData[getIndex(this.props.editID, this.props.taskData)].task} className = "form-control"/>
+                                        <input type="text" value={this.props.taskData[getIndex(this.props.editID, this.props.taskData)].name}  className = "form-control"/>
                                         <button type="submit" className="btn btn-success active" >
                                         <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>Save
                                         </button>
@@ -44,4 +52,3 @@ function getIndex (value,arr) {
     return -1;        //to handle the case where the value doesn't exist
 }
 
-export default EditTask

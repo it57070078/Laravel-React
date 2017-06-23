@@ -7,11 +7,7 @@ Route::get('/',function(){
     return view('reactflux');
 });
 
-// Route::get('/',function(){
-// 	return view('firstreact');
-// });
-
-// Route::get('/', 'TaskController@index');
+Route::get('/getAllTask', 'TaskController@getAllTask');
 
 Route::post('/task', 'TaskController@create'); 
 

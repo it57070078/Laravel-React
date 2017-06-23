@@ -1,8 +1,6 @@
 import React from 'react';
 
-
-
-class DeleteTask extends React.Component{
+export default class DeleteTask extends React.Component{
     constructor(props){
         super(props);
         this.handleDelete = this.handleDelete.bind(this);
@@ -19,8 +17,6 @@ class DeleteTask extends React.Component{
                     Delete
                 </button>
             </form>
-        )
-    }
+        );
+    };
 }
-
-export default DeleteTask
