@@ -17,6 +17,7 @@ export default class EditTask extends React.Component{
 
     }
 
+
     render(){
         return (
             <div className ="container">
@@ -26,7 +27,7 @@ export default class EditTask extends React.Component{
                             <label> Task : </label>
                                 <form className = "form-horizontal" onChange = {this.updateTask}>
                                     <div className ="col-xs-9">
-                                        <input type="text" value={this.props.taskData[getIndex(this.props.editID, this.props.taskData)].name}  className = "form-control"/>
+                                        <input type="text" value={this.props.taskData[getIndex(this.props.editID, this.props.taskData)].name} className = "form-control"/>
                                         <button type="submit" className="btn btn-success active" >
                                         <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>Save
                                         </button>
