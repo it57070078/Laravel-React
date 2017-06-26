@@ -1,10 +1,6 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import * as TaskAction from '../actions/TaskAction.js';
-// import Dispatcher from '../dispatcher.js';
 import TaskStores from '../stores/TaskStores.js';
-import axios from 'axios';
-import dispatcher from '../dispatcher.js'
 
 import Header from './Header.react';
 import AddTask from './AddTask.react';

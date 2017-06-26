@@ -3,10 +3,11 @@ import axios from 'axios';
 
 
 export function _AddTask(name){
-    return axios.post('/task',{name: name}).then(() => {
+    return (dispatch) => {axios.post('/task',{name: name}).then(() => {
             dispatcher.dispatch({type: "ADD_TASK",payload: name});
         })
     }
+}
 
 export function _IndexTask(){
     return axios.get('/getAllTask').then((response)=> {
