@@ -1,6 +1,7 @@
 import React from 'react';
-import * as TaskAction from '../actions/TaskAction.js';
-import TaskStores from '../stores/TaskStores.js';
+import { _AddTask,_DeleteTask,_EditTask,_IndexTask,_UpdateTask } from '../actions/tasksactionredux.js';
+import { connect } from 'react-redux';
+
 
 import Header from './Header.react';
 import AddTask from './AddTask.react';
@@ -9,8 +10,15 @@ import DeleteTask from './DeleteTask.react';
 import EditButton from './EditButton.react';
 import EditTask from './EditTask.react';
 
+function mapStateToProps(state){
+    return { 
+        tasks: state.tasks,
+        editID: state.editID,
+        startID: state.startID
+    }
+}
 
-export default class Layout extends React.Component{
+class Layout extends React.Component{
     constructor(props){
         super(props);
 
@@ -22,25 +30,19 @@ export default class Layout extends React.Component{
     };
 
     componentWillMount(){
-        TaskAction._IndexTask();
-
+        this.props.dispatch(_IndexTask())
     }
-
     addNewTask(e){
-        TaskAction._AddTask(e);
-        // console.log(this.props.startID)
+        this.props.dispatch(_AddTask(e))
     }
     delTask(id){
-        TaskAction._DeleteTask(id)
-        // console.log('del'+id)
+        this.props.dispatch(_DeleteTask(id))
     }
     edtask(id){
-        TaskAction._EditTask(id);
-        // console.log('edit'+id)
-        // console.log('editID '+ this.props.editID)
+        this.props.dispatch(_EditTask(id))
     }
     updateTask(e){
-        TaskAction._UpdateTask(e,this.props.editID)
+        this.props.dispatch(_UpdateTask(e,this.props.editID))
     }
 
     render(){
@@ -66,4 +68,5 @@ export default class Layout extends React.Component{
     }
 }
 
+export default connect(mapStateToProps)(Layout);
 

@@ -17,7 +17,7 @@ export function _DeleteTask(id){
         })
     }
 export function _EditTask(id){
-    return dispatch({type: "EDIT_TASK",payload: id});
+    return ({type: "EDIT_TASK",payload: id});
 }
 
 export function _UpdateTask(editname,editID){

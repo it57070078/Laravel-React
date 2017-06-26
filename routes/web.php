@@ -4,7 +4,7 @@ use App\Task;
 use Illuminate\Http\Request;
 
 Route::get('/',function(){
-    return view('reactflux');
+    return view('redux');
 });
 
 Route::get('/getAllTask', 'TaskController@getAllTask');
