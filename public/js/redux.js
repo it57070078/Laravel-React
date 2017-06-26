@@ -12878,7 +12878,7 @@ var EditTask = function (_React$Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'div',
                                 { className: 'col-xs-9' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control' }),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', value: this.props.taskData[getIndex(this.props.editID, this.props.taskData)].name, className: 'form-control' }),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'button',
                                     { type: 'submit', className: 'btn btn-success active' },
@@ -13160,13 +13160,13 @@ var ShowTask = function (_React$Component) {
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                         'h4',
                                         null,
-                                        'Task'
+                                        ' Task '
                                     )
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'th',
                                     null,
-                                    '\xA0'
+                                    ' \xA0 '
                                 )
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
